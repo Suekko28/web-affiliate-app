@@ -128,7 +128,7 @@
 
     <!-- News Start !-->
     <section class="news">
-        <div class="container mx-auto py-16 px-16 lg:px-32">
+        <div class="container mx-auto px-16 lg:px-32">
             <div class="title-news w-full px-4">
                 <div class="max-w-xl mx-auto text-center mb-12">
                     <h4 class="text-lg sm:text-xl lg:text-2xl text-primary">
@@ -160,7 +160,7 @@
                                     class="w-full object-cover w-full h-[250px] block">
                             </a>
                             <div class="py-8 px-6">
-                                <h4 class="title-news mb-2">HOW TO MAKE YOU HANDSOME</h4>
+                                <h4 class="title-news mb-2 font-bold">HOW TO MAKE YOU HANDSOME</h4>
                                 <p class="text-sm mb-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit,
                                     deserunt?</p>
                                 <a class="text-xs hover:text-hover text-secondary" href="#">Continue Read <i
@@ -177,7 +177,7 @@
                                     class="w-full object-cover w-full h-[250px] block">
                             </a>
                             <div class="py-8 px-6">
-                                <h4 class="title-news mb-2">HOW TO MAKE YOU HANDSOME</h4>
+                                <h4 class="title-news mb-2 font-bold">HOW TO MAKE YOU HANDSOME</h4>
                                 <p class="text-sm mb-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit,
                                     deserunt?</p>
                                 <a class="text-xs hover:text-hover text-secondary" href="#">Continue Read <i
@@ -186,6 +186,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
+                    <div class="card-body">
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
+                            <a href="#">
+                                <img src="{{ asset('/img/news.jpg') }}" alt="Logo OGI"
+                                    class="w-full object-cover w-full h-[250px] block">
+                            </a>
+                            <div class="py-8 px-6">
+                                <h4 class="title-news mb-2 font-bold">HOW TO MAKE YOU HANDSOME</h4>
+                                <p class="text-sm mb-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit,
+                                    deserunt?</p>
+                                <a class="text-xs hover:text-hover text-secondary" href="#">Continue Read <i
+                                        class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
 
             </div>
             <div class="more-detail flex justify-center">
@@ -208,19 +226,4 @@
         </div>
     </section>
     <!-- News End !-->
-
-    <!-- News Footer !-->
-    <section class="footer">
-        <div class="container mx-auto">
-            <div class="flex justify-between w-full p-3 ">
-                <div class="logo-instagram flex flex-row space-x-3">
-                    <img src="{{asset('img/instagram.svg')}}" alt="Logo Instagram" class="w-full h-[20px]">
-                    <img src="{{asset('img/whatsapp.svg')}}" alt="Logo Whatsapp" class="w-full h-[20px]">
-                    <img src="{{asset('img/email.svg')}}" alt="Logo Email" class="w-full h-[20px]">
-                </div>
-                <div class="text-xs">&copy; Outfit Guide Indonesia</div>
-            </div>
-        </div>
-    </section>
-    <!-- News Footer !-->
 @endsection

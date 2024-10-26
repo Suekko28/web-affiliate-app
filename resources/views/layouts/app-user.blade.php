@@ -58,6 +58,8 @@
     <!-- Navbar End !-->
     @yield('navbar')
 
+    @extends('layouts.footer')
+
 
     <script src="{{ asset('dist/js/script.js') }}"></script>
 
