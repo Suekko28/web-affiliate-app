@@ -9,6 +9,7 @@
                     <h4 class="text-lg sm:text-xl lg:text-2xl text-primary">
                         Product
                     </h4>
+                    <div class="w-[75px] h-[2px] my-2 block bg-black mx-auto"></div>
                 </div>
                 <div class="search-bar">
                     <div class="relative lg:w-1/2 w-full mx-auto mb-12">
@@ -26,6 +27,83 @@
                 </div>
             </div>
             <div class="product flex flex-wrap">
+                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
+                    <div class="card-body">
+                        <div class=" overflow-hidden mb-10">
+                            <a href="">
+                                <img src="{{ asset('/img/compass.png') }}" alt="Logo OGI" class="w-full object-cover">
+                            </a>
+                            <div class="py-8 px-6">
+                                <h6 class="code-product mb-2">#1</h6>
+                                <h4 class="title-product mb-2">Compass Retrograde</h4>
+                                <div class="flex flex-row space-x-2">
+                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
+                                        <img src="{{ asset('/img/shopee.svg') }}" alt="">
+                                    </a>
+                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
+                                        <img src="{{ asset('/img/tokopedia.svg') }}" alt="">
+                                    </a>
+                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
+                                        <img src="{{ asset('/img/tiktok.svg') }}" alt="">
+                                    </a>
+                                    {{-- <button class="bg-primary rounded text-white px-6">Shopee</button>
+                                    <button class="bg-primary rounded text-white px-6">Shopee</button>
+                                    <button class="bg-primary rounded text-white px-6">Shopee</button> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
+                    <div class="card-body">
+                        <div class=" overflow-hidden mb-10">
+                            <img src="{{ asset('/img/celana.png') }}" alt="Logo OGI" class="w-full object-cover">
+                            <div class="py-8 px-6">
+                                <h6 class="code-product mb-2">#1</h6>
+                                <h4 class="title-product mb-2">Compass Retrograde</h4>
+                                <div class="flex flex-row space-x-2">
+                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
+                                        <img src="{{ asset('/img/shopee.svg') }}" alt="">
+                                    </a>
+                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
+                                        <img src="{{ asset('/img/tokopedia.svg') }}" alt="">
+                                    </a>
+                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
+                                        <img src="{{ asset('/img/tiktok.svg') }}" alt="">
+                                    </a>
+                                    {{-- <button class="bg-primary rounded text-white px-6">Shopee</button>
+                                    <button class="bg-primary rounded text-white px-6">Shopee</button>
+                                    <button class="bg-primary rounded text-white px-6">Shopee</button> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
+                    <div class="card-body">
+                        <div class=" overflow-hidden mb-10">
+                            <img src="{{ asset('/img/baju.png') }}" alt="Logo OGI" class="w-full object-cover ">
+                            <div class="py-8 px-6">
+                                <h6 class="code-product mb-2">#1</h6>
+                                <h4 class="title-product mb-2">Compass Retrograde</h4>
+                                <div class="flex flex-row space-x-2">
+                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
+                                        <img src="{{ asset('/img/shopee.svg') }}" alt="">
+                                    </a>
+                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
+                                        <img src="{{ asset('/img/tokopedia.svg') }}" alt="">
+                                    </a>
+                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
+                                        <img src="{{ asset('/img/tiktok.svg') }}" alt="">
+                                    </a>
+                                    {{-- <button class="bg-primary rounded text-white px-6">Shopee</button>
+                                    <button class="bg-primary rounded text-white px-6">Shopee</button>
+                                    <button class="bg-primary rounded text-white px-6">Shopee</button> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
                     <div class="card-body">
                         <div class=" overflow-hidden mb-10">

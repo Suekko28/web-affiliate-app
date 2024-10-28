@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -30,25 +30,25 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M1 1h15M1 7h15M1 13h15" />
                         </svg>
-                     </button>
+                    </button>
 
                     <nav id="nav-menu"
                         class="hidden absolute py-5 bg-white shadow-lg rounded-lg  w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none">
                         <ul class="block lg:flex lg:flex-row">
                             <li class="group">
-                                <a href=""
+                                <a href="{{url('/')}}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Home</a>
                             </li>
                             <li class="group">
-                                <a href=""
+                                <a href="{{url('/product')}}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Product</a>
                             </li>
                             <li class="group">
-                                <a href=""
+                                <a href="{{url('/mix&max')}}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Mix&Max</a>
                             </li>
                             <li class="group">
-                                <a href=""
+                                <a href="{{url('/news')}}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">News</a>
                             </li>
                         </ul>
@@ -62,6 +62,37 @@
     @yield('navbar')
 
     @extends('layouts.footer')
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Tombol scroll ke bawah
+            $("a[href='#product']").click(function (e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $("#product").offset().top - 50
+                }, 1000);
+            });
+    
+            // Tombol scroll ke atas
+            $("a[href='#mixmax']").click(function (e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $("#mixmax").offset().top - 50
+                }, 1000);
+            });
+
+            // Tombol scroll ke atas
+            $("a[href='#news']").click(function (e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $("#news").offset().top - 50
+                }, 1000);
+            });
+        });
+    </script>
+    
+
 
 
     <script src="{{ asset('dist/js/script.js') }}"></script>
