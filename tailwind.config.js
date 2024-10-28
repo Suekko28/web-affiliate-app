@@ -12,7 +12,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: '#292929',
+                primary: '#1a1a1a',
                 secondary: '#327BA8',
                 hover: '#5d5d5d',
             },

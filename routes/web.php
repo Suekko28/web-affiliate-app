@@ -21,3 +21,10 @@ Route::get('/news-list', action: function () {
     return view('user-news.index');
 });
 
+
+Auth::routes();
+
+Route::get('/dashboard', action: function () {
+    return view('admin-dashboard.index');
+});
+

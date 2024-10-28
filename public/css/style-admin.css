@@ -1,0 +1,8 @@
+.sidebar-link i {
+    color: #1a1a1a; /* Warna awal ikon */
+    transition: color 0.3s ease; /* Animasi transisi */
+}
+
+.sidebar-link:hover i {
+    color: white !important; /* Warna ikon saat hover */
+}

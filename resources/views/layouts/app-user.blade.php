@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    @vite('resources/css/app.css')
-    <title>Inspired Outfit</title>
+    <link rel="website icon" type="png" href="{{ 'img/logo.png' }}">
+</head>
+@vite('resources/css/app.css')
+<title>Inspired Outfit</title>
 </head>
 
 <body>
@@ -36,19 +38,19 @@
                         class="hidden absolute py-5 bg-white shadow-lg rounded-lg  w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none">
                         <ul class="block lg:flex lg:flex-row">
                             <li class="group">
-                                <a href="{{url('/')}}"
+                                <a href="{{ url('/') }}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Home</a>
                             </li>
                             <li class="group">
-                                <a href="{{url('/product')}}"
+                                <a href="{{ url('/product') }}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Product</a>
                             </li>
                             <li class="group">
-                                <a href="{{url('/mix&max')}}"
+                                <a href="{{ url('/mix&max') }}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Mix&Max</a>
                             </li>
                             <li class="group">
-                                <a href="{{url('/news')}}"
+                                <a href="{{ url('/news') }}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">News</a>
                             </li>
                         </ul>
@@ -65,17 +67,17 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Tombol scroll ke bawah
-            $("a[href='#product']").click(function (e) {
+            $("a[href='#product']").click(function(e) {
                 e.preventDefault();
                 $('html, body').animate({
                     scrollTop: $("#product").offset().top - 50
                 }, 1000);
             });
-    
+
             // Tombol scroll ke atas
-            $("a[href='#mixmax']").click(function (e) {
+            $("a[href='#mixmax']").click(function(e) {
                 e.preventDefault();
                 $('html, body').animate({
                     scrollTop: $("#mixmax").offset().top - 50
@@ -83,7 +85,7 @@
             });
 
             // Tombol scroll ke atas
-            $("a[href='#news']").click(function (e) {
+            $("a[href='#news']").click(function(e) {
                 e.preventDefault();
                 $('html, body').animate({
                     scrollTop: $("#news").offset().top - 50
@@ -91,7 +93,7 @@
             });
         });
     </script>
-    
+
 
 
 
