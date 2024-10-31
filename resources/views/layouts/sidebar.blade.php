@@ -36,7 +36,7 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" aria-expanded="false">
+            <a class="sidebar-link {{ request()->is('news') ? 'active' : '' }}" aria-expanded="false" href="{{ route('news.index')}}">
                 <span>
                     <i class="fa-solid fa-newspaper fa-lg" style="color: #1a1a1a"></i>                
                 </span>

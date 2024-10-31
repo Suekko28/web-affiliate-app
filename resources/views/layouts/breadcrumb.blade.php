@@ -5,10 +5,10 @@
                 <h4 class="fw-semibold mb-8 text-white">{{ $title }}</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        {{-- <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none"
+                        <li class="breadcrumb-item">
+                            <a class="text-muted text-decoration-none text-white"
                                 href="{{ route('dashboard') }}">{{ $subtitle }}</a>
-                        </li> --}}
+                        </li>
                         <li class="breadcrumb-item text-white" aria-current="page">{{ $title }}</li>
                     </ol>
                 </nav>

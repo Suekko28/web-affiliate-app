@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,3 +30,10 @@ Route::get('/dashboard', action: function () {
     return view('admin-dashboard.index');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('/news', NewsController::class);
+    Route::post('/upload', [NewsController::class, 'upload'])->name('ckeditor.upload');
+
+});
