@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NewsFormRequest;
 use App\Models\News;
 use Illuminate\Http\Request;
-use Storage;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -34,6 +35,17 @@ class NewsController extends Controller
         // Mengambil data dari permintaan
         $data = $request->only(['judul', 'deskripsi']);
 
+        // Menghasilkan slug dari judul
+        $slug = Str::slug($data['judul']);
+
+        // Pastikan slug unik
+        $slugCount = News::where('slug', $slug)->count();
+        if ($slugCount > 0) {
+            $slug = "{$slug}-" . ($slugCount + 1); // Tambahkan angka untuk membedakan slug yang sama
+        }
+
+        $data['slug'] = $slug; // Tambahkan slug ke data
+        
         // Menangani gambar
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -50,9 +62,6 @@ class NewsController extends Controller
         return redirect()->route('news.index')->with('success', 'Data berhasil ditambahkan');
     }
 
-
-
-
     public function upload(Request $request)
     {
         $request->validate([
@@ -62,7 +71,6 @@ class NewsController extends Controller
         $path = $request->file('upload')->store('images', 'public');
         $url = Storage::url($path);
         return response()->json(['url' => $url]);
-
     }
 
     /**
@@ -71,18 +79,16 @@ class NewsController extends Controller
     public function show(string $id)
     {
         $data = News::findOrFail($id);
+        return view('admin-news.show', compact('data'));
     }
-
-
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $data = News::find($id);
+        $data = News::findOrFail($id);
         return view('admin-news.edit', compact('data'));
-
     }
 
     /**
@@ -92,6 +98,24 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
         $data = $request->only(['judul', 'deskripsi']); // Mengambil judul dan deskripsi
+
+        // Generate a unique slug if the title is updated
+        if ($request->has('judul') && $data['judul'] !== $news->judul) {
+            $slug = Str::slug($data['judul']);
+            $originalSlug = $slug;
+            $count = 1;
+
+            // Check for uniqueness and modify slug if necessary
+            while (News::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . $count;
+                $count++;
+            }
+
+            $data['slug'] = $slug; // Update the slug in the data array
+        } else {
+            // Keep the existing slug if the title hasn't changed
+            $data['slug'] = $news->slug;
+        }
 
         if ($request->hasFile('image')) {
             // Delete the old image if it exists
@@ -116,8 +140,6 @@ class NewsController extends Controller
         return redirect()->route('news.index')->with('success', 'Data berhasil diperbarui');
     }
 
-
-
     /**
      * Remove the specified resource from storage.
      */
@@ -134,5 +156,4 @@ class NewsController extends Controller
 
         return redirect()->route('news.index')->with('success', 'Berhasil Menghapus Data');
     }
-
 }
