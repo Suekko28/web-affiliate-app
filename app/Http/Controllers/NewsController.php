@@ -32,20 +32,17 @@ class NewsController extends Controller
      */
     public function store(NewsFormRequest $request)
     {
-        // Mengambil data dari permintaan
         $data = $request->only(['judul', 'deskripsi']);
 
-        // Menghasilkan slug dari judul
         $slug = Str::slug($data['judul']);
 
-        // Pastikan slug unik
         $slugCount = News::where('slug', $slug)->count();
         if ($slugCount > 0) {
-            $slug = "{$slug}-" . ($slugCount + 1); // Tambahkan angka untuk membedakan slug yang sama
+            $slug = "{$slug}-" . ($slugCount + 1);
         }
 
-        $data['slug'] = $slug; // Tambahkan slug ke data
-        
+        $data['slug'] = $slug;
+
         // Menangani gambar
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -68,7 +65,7 @@ class NewsController extends Controller
             'upload' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
-        $path = $request->file('upload')->store('images', 'public');
+        $path = $request->file('upload')->store('news-post', 'public');
         $url = Storage::url($path);
         return response()->json(['url' => $url]);
     }
@@ -99,23 +96,14 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
         $data = $request->only(['judul', 'deskripsi']); // Mengambil judul dan deskripsi
 
-        // Generate a unique slug if the title is updated
-        if ($request->has('judul') && $data['judul'] !== $news->judul) {
-            $slug = Str::slug($data['judul']);
-            $originalSlug = $slug;
-            $count = 1;
+        $slug = Str::slug($data['judul']);
 
-            // Check for uniqueness and modify slug if necessary
-            while (News::where('slug', $slug)->exists()) {
-                $slug = $originalSlug . '-' . $count;
-                $count++;
-            }
-
-            $data['slug'] = $slug; // Update the slug in the data array
-        } else {
-            // Keep the existing slug if the title hasn't changed
-            $data['slug'] = $news->slug;
+        $slugCount = News::where('slug', $slug)->count();
+        if ($slugCount > 0) {
+            $slug = "{$slug}-" . ($slugCount + 1);
         }
+
+        $data['slug'] = $slug;
 
         if ($request->hasFile('image')) {
             // Delete the old image if it exists
@@ -150,6 +138,22 @@ class NewsController extends Controller
         if ($data->image) {
             $imagePath = 'news/' . basename($data->image);
             Storage::disk('public')->delete($imagePath);
+        }
+
+        if ($data->deskripsi) {
+            // Use a regex to find all image URLs in the deskripsi
+            preg_match_all('/<img[^>]+src="([^">]+)"/', $data->deskripsi, $matches);
+
+            if (!empty($matches[1])) {
+                foreach ($matches[1] as $imageUrl) {
+                    // Extract the filename from the URL
+                    $imageName = basename($imageUrl);
+                    $imagePath = 'news-post/' . $imageName;
+
+                    // Delete the image if it exists
+                    Storage::disk('public')->delete($imagePath);
+                }
+            }
         }
 
         $data->delete();

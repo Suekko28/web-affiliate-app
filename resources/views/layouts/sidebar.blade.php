@@ -28,9 +28,9 @@
             </a>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link" aria-expanded="false">
+            <a class="sidebar-link {{ request()->is('product') ? 'active' : '' }}" aria-expanded="false" href="{{ route('product.index')}}">
                 <span>
-                    <i class="fa-solid fa-cart-shopping fa-lg" style="color: #1a1a1a"></i> 
+                    <i class="fa-solid fa-cart-shopping fa-lg" style="color: #1a1a1a"></i>                
                 </span>
                 <span class="hide-menu">Product</span>
             </a>
