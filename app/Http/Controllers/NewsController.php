@@ -32,7 +32,7 @@ class NewsController extends Controller
      */
     public function store(NewsFormRequest $request)
     {
-        $data = $request->only(['judul', 'deskripsi']);
+        $data = $request->all();
 
         $slug = Str::slug($data['judul']);
 
@@ -94,7 +94,7 @@ class NewsController extends Controller
     public function update(NewsFormRequest $request, string $id)
     {
         $news = News::findOrFail($id);
-        $data = $request->only(['judul', 'deskripsi']); // Mengambil judul dan deskripsi
+        $data = $request->all();
 
         $slug = Str::slug($data['judul']);
 

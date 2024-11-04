@@ -13,109 +13,78 @@
                 <div class="container-fluid">
                     @include('layouts.message')
                     <!-- Small boxes (Stat box) -->
-                    <form action="{{ route('news.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body container bg-white">
-                            <div class="mempelai text-center fw-bold fs-5 mb-4">Product</div>
-                            <div class="form-group fs-3">
-                                <div class="row">
-                                    {{-- <div class="col-sm-4 mb-3">
-                                        <label for="image">Gambar <span class="mandatory">*</span></label>
-                                        <input type="file" class="form-control" id="image" name="image"
-                                            placeholder="" value="{{ old('image') }}">
-                                    </div>
-                                    <div class="col-sm-4 mb-3">
-                                        <label for="judul">Nama Product <span class="mandatory">*</span></label>
-                                        <input type="text" class="form-control" id="judul" name="judul"
-                                            placeholder="Masukkan judul" value="{{ old('judul') }}">
-                                    </div>
-                                    <div class="col-sm-4 mb-3">
-                                        <label for="judul">Link Shopee <span class="fst-italic">
-                                                (Opsional)</span></label>
-                                        <input type="text" class="form-control" id="judul" name="judul"
-                                            placeholder="Masukkan judul" value="{{ old('judul') }}">
-                                    </div>
-                                    <div class="col-sm-4 mb-3">
-                                        <label for="judul">Link Tokopedia <span class="fst-italic">
-                                                (Opsional)</span></label>
-                                        <input type="text" class="form-control" id="judul" name="judul"
-                                            placeholder="Masukkan judul" value="{{ old('judul') }}">
-                                    </div>
-                                    <div class="col-sm-4 mb-3">
-                                        <label for="judul">Link Tiktok <span class="fst-italic">
-                                                (Opsional)</span></label>
-                                        <input type="text" class="form-control" id="judul" name="judul"
-                                            placeholder="Masukkan judul" value="{{ old('judul') }}">
-                                    </div> --}}
+                            {{-- <div id="product-forms">
+                                <div class="text-center fw-bold fs-5 mb-4">Product</div>
 
-                                    <div class="form-product">
-                                        <div class="d-flex">
-                                            <button type="button" class="btn btn-primary mb-3 ms-auto" id="btnProduct"
-                                                data-bs-toggle="modal" data-bs-target="#modalProduct">
-                                                Tambah Product
-                                        </div>
-                                        <div class="table-responsive mb-4 border rounded-1">
-                                            <table class="table text-center fs-3">
-                                                <thead>
-                                                    <th>No</th>
-                                                    <th>Foto</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Judul Product</th>
-                                                    <th>Detail</th>
-                                                    <th>Aksi</th>
-                                                </thead>
-                                                {{-- <tbody>
-                                                    <?php $i = $dataProduct->firstItem(); ?>
-                                                    @foreach ($dataProduct as $item)
-                                                        <tr>
-                                                            <td>{{ $i }}</td>
-                                                            <td><img class="img-thumbnail" src="{{ Storage::url($item->image1) }}"
-                                                                    alt="Image 1" width="120"></td>
-                                                            <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
-                                                            <td>{{ $item->judul_cerita }}</td>
-                                                            <td>{{ $item->deskripsi }}</td>
-                                                            <td>
-                                                                <a href="javascript:void(0)"
-                                                                    class="btn btn-warning mb-2 rounded edit-btn-perjalanan-cinta"
-                                                                    data-id="{{ $item->id }}"
-                                                                    data-tanggal="{{ $item->tanggal }}"
-                                                                    data-judul="{{ $item->judul_cerita }}"
-                                                                    data-deskripsi="{{ $item->deskripsi }}"
-                                                                    data-image1="{{ Storage::url($item->image1) }}">
-                                                                    <i class="fa fa-pen-to-square" style="color:white;"></i>
-                                                                </a>
-            
-                                                                <button class="btn btn-danger delete-btn-perjalanan-cinta rounded mb-2"
-                                                                    data-id="{{ $item->id }}">
-                                                                    <i class="fa fa-trash"></i>
-                                                                </button>
-            
-                                                                <!-- Add delete button if needed -->
-                                                            </td>
-                                                        </tr>
-                                                        <?php $i++; ?>
-                                                    @endforeach
-                                                </tbody> --}}
-                                            </table>
+                                <!-- Form Produk Template -->
+                                <div class="product-form-fields">
+                                    <div class="form-group fs-3">
+                                        <div class="row">
+                                            <div class="col-sm-4 mb-3">
+                                                <label for="image">Gambar <span class="mandatory">*</span></label>
+                                                <input type="file" class="form-control" name="image[]" required>
+                                            </div>
+                                            <div class="col-sm-4 mb-3">
+                                                <label for="nama">Nama Product <span class="mandatory">*</span></label>
+                                                <input type="text" class="form-control" name="nama[]"
+                                                    placeholder="Masukkan nama produk" value="{{ old('nama') }}" required>
+                                            </div>
+                                            <div class="col-sm-4 mb-3">
+                                                <label for="link_shopee">Link Shopee <span
+                                                        class="fst-italic">(Opsional)</span></label>
+                                                <input type="text" class="form-control" name="link_shopee[]"
+                                                    placeholder="Masukkan link shopee" value="{{ old('link_shopee') }}">
+                                            </div>
+                                            <div class="col-sm-4 mb-3">
+                                                <label for="link_tokped">Link Tokopedia <span
+                                                        class="fst-italic">(Opsional)</span></label>
+                                                <input type="text" class="form-control" name="link_tokped[]"
+                                                    placeholder="Masukkan link tokopedia" value="{{ old('link_tokped') }}">
+                                            </div>
+                                            <div class="col-sm-4 mb-3">
+                                                <label for="link_tiktok">Link Tiktok <span
+                                                        class="fst-italic">(Opsional)</span></label>
+                                                <input type="text" class="form-control" name="link_tiktok[]"
+                                                    placeholder="Masukkan link tiktok" value="{{ old('link_tiktok') }}">
+                                            </div>
+                                            <div class="container">
+
+                                                <button type="button" class="btn btn-danger ms-2 delete-product"
+                                                    style="display: none;">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-sm-4 mb-3">
-                                        <label for="judul">Kategori <span class="mandatory">*</span></label>
-                                        <select name="kategori" id="kagegori" class="form-select">
-                                            <option value="0">---Pilih Kategori---</option>
-                                            <option value="0">Product</option>
-                                            <option value="0">Mix & Max</option>
-                                        </select>
-                                    </div>
-
+                                    <hr>
                                 </div>
+                            </div>
+
+                            <div class="d-flex">
+                                <button type="button" class="btn btn-primary mb-3 ms-auto" id="add-product">Tambah
+                                    Product</button>
+                            </div> --}}
+
+                            <div class="col-sm-4 mb-3">
+                                <label for="kategori">Kategori <span class="mandatory">*</span></label>
+                                <select name="kategori" class="form-select" required>
+                                    <option value="0" {{ old('kategori') == '0' ? 'selected' : '' }}>---Pilih
+                                        Kategori---
+                                    </option>
+                                    <option value="1" {{ old('kategori') == '1' ? 'selected' : '' }}>Product</option>
+                                    <option value="2" {{ old('kategori') == '2' ? 'selected' : '' }}>Mix & Max
+                                    </option>
+                                </select>
                             </div>
 
                             <div class="d-flex flex-row-reverse mt-5">
                                 <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                <a href="{{ route('news.index') }}" class="btn btn-secondary">Batal</a>
+                                <a href="{{ route('product.index') }}" class="btn btn-secondary">Batal</a>
                             </div>
+
                         </div>
                     </form>
                 </div>
@@ -123,125 +92,37 @@
         </div>
     </div>
 
-    <!-- Modal Buat dan Edit Product -->
-    <div class="modal fade" id="modalProduct" tabindex="-1" aria-labelledby="modalProductLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalProductLabel">Buat/Edit Product</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="formProduct" action="" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="_method" id="formMethod" value="POST">
-
-                        <div class="form-group mb-2">
-                            <label for="image">Gambar <span class="mandatory">*</span></label>
-                            <input type="file" class="form-control" id="image" name="image" placeholder=""
-                                value="{{ old('image') }}">
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label for="judul">Nama Product <span class="mandatory">*</span></label>
-                            <input type="text" class="form-control" id="judul" name="judul"
-                                placeholder="Masukkan judul" value="{{ old('judul') }}">
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label for="link_shopee">Link Shopee <span class="fst-italic">(Opsional)</span></label>
-                            <input type="text" class="form-control" id="link_shopee" name="link_shopee"
-                                placeholder="Masukkan link Shopee" value="{{ old('link_shopee') }}">
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label for="link_tokopedia">Link Tokopedia <span class="fst-italic">(Opsional)</span></label>
-                            <input type="text" class="form-control" id="link_tokopedia" name="link_tokopedia"
-                                placeholder="Masukkan link Tokopedia" value="{{ old('link_tokopedia') }}">
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label for="link_tiktok">Link Tiktok <span class="fst-italic">(Opsional)</span></label>
-                            <input type="text" class="form-control" id="link_tiktok" name="link_tiktok"
-                                placeholder="Masukkan link Tiktok" value="{{ old('link_tiktok') }}">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary" form="formProduct">Simpan</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
-<!-- Modal JS Product -->
-<script>
-    document.getElementById('btnProduct').addEventListener('click', function() {
-        // Reset the form for new entries
-        document.getElementById('formProduct').reset();
-        document.getElementById('formMethod').value = 'POST'; // Set method for creating
-        document.getElementById('formProduct').action = "{{ route('product.store') }}"; // Set action to store route
-        document.getElementById('modalProductLabel').textContent = 'Tambah Product';
-    });
-
-    document.querySelectorAll('.edit-btn-product').forEach(function(button) {
-        button.addEventListener('click', function() {
-            // Fetch data from data attributes
-            var id = this.getAttribute('data-id');
-            var tanggal = this.getAttribute('data-tanggal');
-            var judul = this.getAttribute('data-judul');
-            var deskripsi = this.getAttribute('data-deskripsi');
-            var image1 = this.getAttribute('data-image1');
-
-            // Populate form with existing data
-            document.getElementById('formProduct').action = `/news/${id}`; // Set update route with ID
-            document.getElementById('formMethod').value = 'PUT'; // Set method for updating
-
-            document.getElementById('tanggal').value = tanggal;
-            document.getElementById('judul').value = judul;
-            document.getElementById('deskripsi').value = deskripsi;
-
-            // Display current image if available
-            if (image1) {
-                var currentImagePreview = document.getElementById('currentImagePreview');
-                currentImagePreview.src = image1;
-                currentImagePreview.style.display = 'block';
-            }
-
-            document.getElementById('modalProductLabel').textContent = 'Edit Product';
-
-            // Show modal
-            var modal = new bootstrap.Modal(document.getElementById('modalProduct'));
-            modal.show();
-        });
-    });
-
-    // Add delete functionality
-    document.querySelectorAll('.delete-btn-product').forEach(function(button) {
-        button.addEventListener('click', function() {
-            var id = this.getAttribute('data-id');
-            if (confirm('Are you sure you want to delete this product?')) {
-                // Perform delete request
-                fetch(`/news/${id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        location.reload(); // Reload page after deletion
-                    } else {
-                        alert('Failed to delete product.');
-                    }
-                });
-            }
-        });
-    });
-</script>
-
-
 @section('scripts')
+    <!-- JavaScript untuk menggandakan bagian gambar hingga link Tiktok dan menghapus produk -->
+    <script>
+        document.getElementById('add-product').addEventListener('click', function() {
+            // Ambil elemen pertama dari fields produk yang ada
+            const productFields = document.querySelector('.product-form-fields');
+
+            // Gandakan elemen tersebut
+            const newProductFields = productFields.cloneNode(true);
+
+            // Reset nilai dari input di dalam fields yang digandakan
+            newProductFields.querySelectorAll('input').forEach(input => input.value = '');
+
+            // Tampilkan tombol hapus pada form baru
+            const deleteButton = newProductFields.querySelector('.delete-product');
+            deleteButton.style.display = 'inline-block'; // Tampilkan tombol hapus
+
+            // Tambahkan fields yang digandakan ke dalam container
+            document.getElementById('product-forms').appendChild(newProductFields);
+        });
+
+        // Event listener untuk tombol hapus
+        document.getElementById('product-forms').addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-product')) {
+                const productForm = e.target.closest('.product-form-fields');
+                if (productForm) {
+                    productForm.remove(); // Remove the product form
+                }
+            }
+        });
+    </script>
 @endsection

@@ -40,15 +40,21 @@
                         @foreach ($data as $item)
                             <tr class="text-center">
                                 <td scope="row">{{ $i }}</td>
+                                <td scope="row">#{{ $i }}</td>
                                 <td>
                                     <img class="img-fluid" src="{{ asset('' . $item->image) }}" alt=""
                                         width="120" height="120" alt="Foto product">
                                 </td>
-                                <td>{{ $item->judul }} </td>
+                                <td scope="row">{{ $item->nama }}</td>
+                                <td scope="row">
+                                    @if ($item->kategori == 1)
+                                        Product
+                                    @else
+                                        Mix&Max
+                                    @endif
                                 </td>
                                 <td>
                                     {{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y h:i A') }}
-
                                 </td>
                                 <td>
                                     <div class="btn-group-horizontal">

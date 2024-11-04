@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
-    Use HasFactory;
+    use HasFactory;
+    protected $casts = [
+        'image' => 'array',
+    ];
+
 
     protected $table = 'product';
 
-    protected $fillabe = [ 
+    protected $fillable = [
         'image',
         'nama',
         'link_shopee',
@@ -21,7 +25,8 @@ class Product extends Model
         'kategori',
     ];
 
-    public function Kategori() : BelongsTo
+
+    public function Kategori(): BelongsTo
     {
         return $this->belongsTo(Kategori::class, 'product_id', 'id');
     }

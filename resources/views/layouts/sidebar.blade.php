@@ -21,7 +21,7 @@
         </li>
 
         <li class="sidebar-item">
-            <a class="sidebar-link" aria-expanded="false">
+            <a class="sidebar-link" aria-expanded="false" {{ request()->is('dashboard') ? 'active' : '' }} href="{{route('dashboard')}}">
                 <span>
                     <i class="fa-solid fa-gauge fa-lg" style="color: #1a1a1a"></i> </span>
                 <span class="hide-menu">Dashboard</span>

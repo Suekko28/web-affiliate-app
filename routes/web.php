@@ -38,6 +38,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/news', NewsController::class);
     Route::post('/upload', [NewsController::class, 'upload'])->name('ckeditor.upload');
 
-    Route::resource('/product', KategoriController::class);
+    Route::resource('/product', controller: ProductController::class);
 
 });

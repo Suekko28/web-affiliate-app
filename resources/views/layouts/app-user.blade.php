@@ -42,15 +42,15 @@
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Home</a>
                             </li>
                             <li class="group">
-                                <a href="{{ url('/product') }}"
+                                <a href="{{ url('/product-list') }}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Product</a>
                             </li>
                             <li class="group">
-                                <a href="{{ url('/mix&max') }}"
+                                <a href="{{ url('/mix&max-list') }}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Mix&Max</a>
                             </li>
                             <li class="group">
-                                <a href="{{ url('/news') }}"
+                                <a href="{{ url('/news-list') }}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">News</a>
                             </li>
                         </ul>
