@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KategoriFormRequest;
 use App\Models\Kategori;
 use App\Models\Kateogri;
 use App\Models\Product;
@@ -14,16 +15,14 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $data = Kategori::latest()->paginate(10);
+        $data = Kategori::latest()
+        ->with('Product')
+        ->paginate(10);
         return view('admin-product.index', compact('data'));
     }
 
     public function create()
     {
-
-        // $dataProduct = Product::where('product_id', $productID)
-        //     ->orderBy('id', 'desc')
-        //     ->paginate(10);
 
         return view('admin-product.create');
     }
@@ -31,9 +30,13 @@ class KategoriController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(KategoriFormRequest $request)
     {
-        //
+        $data = $request->all();
+
+        Kategori::create($data);
+
+        return redirect()->route('product.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -55,9 +58,13 @@ class KategoriController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(KategoriFormRequest $request, string $id)
     {
-        //
+        $data = Kategori::find($id);
+
+        $data->update($request->all());
+
+        return redirect()->route('product.index')->with('success', 'Data berhasil diperbaharui');
     }
 
     /**
@@ -65,6 +72,10 @@ class KategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Kategori::find($id);
+
+        $data->delete();
+
+        return redirect()->route('product.index')->with('success', 'Data berhasil dihapus');
     }
 }

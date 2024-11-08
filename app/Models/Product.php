@@ -9,11 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Product extends Model
 {
     use HasFactory;
-    protected $casts = [
-        'image' => 'array',
-    ];
-
-
+    
     protected $table = 'product';
 
     protected $fillable = [
@@ -22,12 +18,12 @@ class Product extends Model
         'link_shopee',
         'link_tokped',
         'link_tiktok',
-        'kategori',
+        'kategori_id',
     ];
 
 
     public function Kategori(): BelongsTo
     {
-        return $this->belongsTo(Kategori::class, 'product_id', 'id');
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
     }
 }

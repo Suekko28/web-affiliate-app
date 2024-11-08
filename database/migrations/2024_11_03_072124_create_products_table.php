@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('link_shopee');
             $table->string('link_tokped');
             $table->string('link_tiktok');
+            $table->unsignedBigInteger('kategori_id');
+            $table->foreign('kategori_id')
+            ->references('id')
+            ->on('kategori')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -12,13 +12,13 @@ class Kategori extends Model
 
     protected $table = 'kategori';
 
-    protected $fillabe = [
+    protected $fillable  = [
         'kategori'
     ];
 
     public function Product(): HasMany
     {
-        return $this->HasMany(Product::class, 'product_id', 'id');
+        return $this->hasMany(Product::class, 'kategori_id', 'id');
     }
 
 }

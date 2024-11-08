@@ -28,18 +28,15 @@ class ProductController extends Controller
 
         // Process images if any were uploaded
         if ($request->hasFile('image')) {
-            $images = []; // Initialize an array to store image URLs
 
             foreach ($request->file('image') as $image) {
                 $nama_image = rand() . '_' . uniqid() . '_' . $image->getClientOriginalName();
                 $path = $image->storeAs('product', $nama_image, 'public');
                 $url = Storage::url($path);
+                $data['image'] = $url;
 
-                $images[] = $url; // Add each image URL to the array
             }
 
-            // Store images as a JSON string in the database
-            $data['image'] = json_encode($images); // Ensure this is stored as JSON if needed
         }
 
         Product::create($data); // Ensure the 'image' column can store JSON or TEXT data
