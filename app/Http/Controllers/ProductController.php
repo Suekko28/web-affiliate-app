@@ -16,10 +16,11 @@ class ProductController extends Controller
         return view('admin-product.index', compact('data'));
     }
 
-    public function create()
+    public function create($productId)
     {
+        $product = Product::where('kategori_id', $productId);
 
-        return view('admin-product.create');
+        return view('admin-product.create', $product);
     }
 
     public function store(ProductFormRequest $request)
