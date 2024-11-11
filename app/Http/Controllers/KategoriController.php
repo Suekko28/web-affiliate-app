@@ -16,8 +16,8 @@ class KategoriController extends Controller
     public function index()
     {
         $data = Kategori::latest()
-        ->with('Product')
-        ->paginate(10);
+            ->with('Product')
+            ->paginate(10);
         return view('admin-product.index', compact('data'));
     }
 
@@ -60,12 +60,12 @@ class KategoriController extends Controller
      */
     public function update(KategoriFormRequest $request, string $id)
     {
-        $data = Kategori::find($id);
-
-        $data->update($request->all());
+        $data = Kategori::findOrFail($id); // Use findOrFail to handle non-existent records gracefully
+        $data->update($request->validated()); // Ensure only validated data is used
 
         return redirect()->route('product.index')->with('success', 'Data berhasil diperbaharui');
     }
+
 
     /**
      * Remove the specified resource from storage.

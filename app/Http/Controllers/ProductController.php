@@ -29,14 +29,11 @@ class ProductController extends Controller
 
         // Process images if any were uploaded
         if ($request->hasFile('image')) {
-
-            foreach ($request->file('image') as $image) {
-                $nama_image = rand() . '_' . uniqid() . '_' . $image->getClientOriginalName();
-                $path = $image->storeAs('product', $nama_image, 'public');
-                $url = Storage::url($path);
-                $data['image'] = $url;
-
-            }
+            $image = $request->file('image');
+            $nama_image = rand() . '_' . uniqid() . '_' . $image->getClientOriginalName();
+            $path = $image->storeAs('product', $nama_image, 'public');
+            $url = Storage::url($path);
+            $data['image'] = $url;
 
         }
 
