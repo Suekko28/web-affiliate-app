@@ -18,12 +18,16 @@ class Product extends Model
         'link_shopee',
         'link_tokped',
         'link_tiktok',
-        'kategori_id',
+        'tag_product_id',
     ];
 
 
     public function Kategori(): BelongsTo
     {
         return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
+    }
+    public function tagProduct(): BelongsTo
+    {
+        return $this->belongsTo(TagProduct::class, 'tag_product_id', 'id');
     }
 }

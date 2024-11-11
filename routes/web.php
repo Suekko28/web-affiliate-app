@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TagProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,6 +39,19 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/news', NewsController::class);
     Route::post('/upload', [NewsController::class, 'upload'])->name('ckeditor.upload');
 
-    Route::resource('/product', controller: ProductController::class);
+    // Route Tag Product
+    Route::resource('/product', controller: TagProductController::class);
+    Route::post('/product/{id}/update', [TagProductController::class, 'update']);
+
+
+    // Route Product Kategori
+    Route::get('/product/{id}/create', [ProductController::class, 'create'])->name('form-product.create');
+    Route::get('/product/{tagProductId}/edit/{id}', [ProductController::class, 'edit'])->name('form-product.edit');
+    Route::post('/product/{id}/store', [ProductController::class, 'store'])->name('form-product.store');
+
+
+    Route::post('/product/{tagProductId}/store-product-list', [ProductController::class, 'storeProduct'])->name('product-list.store');
+    Route::put('/product/{id}/update-product-list', [ProductController::class, 'updateProduct'])->name('product-list.update');
+    Route::delete('/product/{id}/delete-product-list', [ProductController::class, 'deleteProduct'])->name('product-list.delete');
 
 });

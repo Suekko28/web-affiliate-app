@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductFormRequest extends FormRequest
+class TagProductFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,14 @@ class ProductFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kategori' => ['required']
+            'tag_product' => ['required'],
         ];
     }
 
-    public function messages(): array
+    public function messages()
     {
         return [
-            'kategori.required' => 'Kategori wajib diisi'
+            'tag_product.required' => 'Tag product wajib diisi'
         ];
     }
-
 }

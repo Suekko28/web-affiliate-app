@@ -10,8 +10,10 @@
             <h4 class="card-title mb-0">Basic Table</h4>
         </div> --}}
         <div class="card-body">
-            <a class="btn btn-primary mb-3" href="{{ url('product/create') }}">+ Buat Product</a>
-            @include('layouts.message')
+            <button type="button" class="btn btn-primary mb-3" id="btnProduct" data-bs-toggle="modal"
+                data-bs-target="#modalProduct">
+                + Create Product
+            </button> @include('layouts.message')
             <div class="search">
                 <div class="mb-3">
                     <input type="text" id="searchInput" class="form-control" placeholder="Cari...">
@@ -28,11 +30,12 @@
                             <th>No</th>
                             {{-- <th>Nama Undangan</th> --}}
                             <th>Tag Product</th>
-                            <th>Foto</th>
-                            <th>Nama Product</th>
-                            <th>Kategori</th>
+                            {{-- <th>Foto</th>
+                            <th>Name Product</th> --}}
+                            <th>Category</th>
+                            <th>List Product</th>
                             <th>Created Date</th>
-                            <th>Aksi</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,17 +43,30 @@
                         @foreach ($data as $item)
                             <tr class="text-center">
                                 <td scope="row">{{ $i }}</td>
-                                <td scope="row">#{{ $i }}</td>
-                                <td>
+                                <td scope="row">{{$item->tag_product}}</td>
+                                <td></td>
+                                {{-- <td></td> --}}
+                                {{-- <td>
                                     <img class="img-fluid" src="{{ asset('' . $item->image) }}" alt=""
                                         width="120" height="120" alt="Foto product">
-                                </td>
-                                <td scope="row">{{ $item->nama }}</td>
+                                </td> --}}
+                                {{-- <td scope="row">{{ $item->nama }}</td>
                                 <td scope="row">
                                     @if ($item->kategori == 1)
                                         Product
                                     @else
                                         Mix&Max
+                                    @endif
+                                </td> --}}
+                                <td>
+                                    @if ($item->Kategori->isEmpty())
+                                        <a class="btn btn-primary"
+                                            href="{{ route('form-product.create', ['id' => $item->id]) }}">Create List Product</a>
+                                    @else
+                                        <a class="btn btn-secondary"
+                                            href="{{ route('form-product.edit', ['tagProductId' => $item->Kategori->first()->tag_product_id, 'id' => $item->Kategori->first()->id]) }}">
+                                            Edit Konten
+                                        </a>
                                     @endif
                                 </td>
                                 <td>
@@ -58,9 +74,10 @@
                                 </td>
                                 <td>
                                     <div class="btn-group-horizontal">
-                                        <a href="{{ url('product/' . $item->id) . '/edit' }}"
-                                            class="btn btn-warning mb-2 rounded"><i class="fa fa-pen-to-square"
-                                                style="color:white;"></i></a>
+                                        <a href="javascript:void(0)" class="btn btn-warning mb-2 rounded edit-btn"
+                                            data-id="{{ $item->id }}" data-tag_product="{{ $item->tag_product }}">
+                                            <i class="fa fa-pen-to-square" style="color:white;"></i>
+                                        </a>
                                         <button class="btn btn-danger delete-btn rounded mb-2"
                                             data-id="{{ $item->id }}"><i class="fa fa-trash"></i></button>
                                     </div>
@@ -76,11 +93,72 @@
         </div>
     </div>
 
+    <!-- Modal Create dan Edit Undangan -->
+    <div class="modal fade" id="modalProduct" tabindex="-1" aria-labelledby="modalProductLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalProductLabel">Create/Edit Undangan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formProduct" action="{{ route('product.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id" id="tagProductId">
+                        <div class="form-group">
+                            <label for="tag_product">Tag Product<span class="mandatory">*</span></label>
+                            <input type="text" name="tag_product" id="tag_product" class="form-control" required
+                                placeholder="Input Tag Product (#112)">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" form="formProduct">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Hidden form for delete -->
     <form id="deleteForm" method="POST" style="display:none;">
         @csrf
         @method('DELETE')
     </form>
+
+
+    <script>
+        // Event listener untuk tombol "Create Undangan"
+        document.getElementById('btnProduct').addEventListener('click', function() {
+            // Reset form action ke route store dan kosongkan field input
+            document.getElementById('formProduct').reset();
+            document.getElementById('formProduct').action = "{{ route('product.store') }}";
+
+            // Ubah title modal jadi "Create Undangan Baru"
+            document.getElementById('modalProductLabel').textContent = 'Create Product';
+        });
+
+        // Event listener untuk tombol edit
+        document.querySelectorAll('.edit-btn').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                var id = this.getAttribute('data-id');
+                var tag_product = this.getAttribute('data-tag_product');
+
+                // Set form action untuk update
+                document.getElementById('formProduct').action = '/product/' + id + '/update';
+
+                // Isi form dengan data dari tombol edit
+                document.getElementById('tagProductId').value = id;
+                document.getElementById('tag_product').value = tag_product;
+
+                // Ubah title modal jadi "Edit Undangan"
+                document.getElementById('modalProductLabel').textContent = 'Edit Product';
+
+                // Buka modal
+                var modal = new bootstrap.Modal(document.getElementById('modalProduct'));
+                modal.show();
+            });
+        });
+    </script>
 
     <script>
         document.querySelectorAll('.delete-btn').forEach(function(button) {
