@@ -43,9 +43,16 @@
                         @foreach ($data as $item)
                             <tr class="text-center">
                                 <td scope="row">{{ $i }}</td>
-                                <td scope="row">{{$item->tag_product}}</td>
-                                <td></td>
-                                {{-- <td></td> --}}
+                                <td scope="row">{{ $item->tag_product }}</td>
+                                <td>
+                                    @foreach ($item->Kategori as $kategori)
+                                        @if ($kategori->kategori == 1)
+                                            Product
+                                        @else
+                                            Mix&Max
+                                        @endif
+                                    @endforeach
+                                </td> {{-- <td></td> --}}
                                 {{-- <td>
                                     <img class="img-fluid" src="{{ asset('' . $item->image) }}" alt=""
                                         width="120" height="120" alt="Foto product">
@@ -61,7 +68,8 @@
                                 <td>
                                     @if ($item->Kategori->isEmpty())
                                         <a class="btn btn-primary"
-                                            href="{{ route('form-product.create', ['id' => $item->id]) }}">Create List Product</a>
+                                            href="{{ route('form-product.create', ['id' => $item->id]) }}">Create List
+                                            Product</a>
                                     @else
                                         <a class="btn btn-secondary"
                                             href="{{ route('form-product.edit', ['tagProductId' => $item->Kategori->first()->tag_product_id, 'id' => $item->Kategori->first()->id]) }}">

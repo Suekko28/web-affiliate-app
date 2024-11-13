@@ -11,7 +11,8 @@
             <section class="content">
                 <div class="container-fluid">
                     @include('layouts.message')
-                    <form action="{{ route('form-product.store', ['id' => $tagProduct]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('form-product.store', ['id' => $tagProduct]) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="tag_product_id" value="{{ $tagProduct->id }}">
                         <div class="card-body container bg-white">
@@ -114,29 +115,33 @@
 
                         <div class="form-group mb-2">
                             <label for="modalImage">Image <span class="mandatory">*</span></label>
-                            <input type="file" class="form-control" name="image" id="modalImage" required>
+                            <input type="file" class="form-control" name="image" id="modalImage">
                             <img id="currentimage" class="img-thumbnail mt-2" src="" alt="Current Image"
                                 width="120" style="display: none;">
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="modalNama">Product Name <span class="mandatory">*</span></label>
-                            <input type="text" class="form-control" name="nama" id="modalNama" required>
+                            <input type="text" class="form-control" name="nama" id="modalNama" required
+                                placeholder="Input Name Product">
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="modalLinkShopee">Shopee Link <span class="fst-italic">(Optional)</span></label>
-                            <input type="text" class="form-control" name="link_shopee" id="modalLinkShopee">
+                            <input type="text" class="form-control" name="link_shopee" id="modalLinkShopee"
+                                placeholder="Input Shopee Link">
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="modalLinkTokped">Tokopedia Link <span class="fst-italic">(Optional)</span></label>
-                            <input type="text" class="form-control" name="link_tokped" id="modalLinkTokped">
+                            <input type="text" class="form-control" name="link_tokped" id="modalLinkTokped"
+                                placeholder="Input Tokopedia Link">
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="modalLinkTiktok">Tiktok Link <span class="fst-italic">(Optional)</span></label>
-                            <input type="text" class="form-control" name="link_tiktok" id="modalLinkTiktok">
+                            <input type="text" class="form-control" name="link_tiktok" id="modalLinkTiktok"
+                                placeholder="Input Tiktok Link">
                         </div>
                     </form>
                 </div>
@@ -147,11 +152,26 @@
             </div>
         </div>
     </div>
-
+    <!-- Hidden form for delete -->
+    <form id="deleteForm" method="POST" style="display:none;">
+        @csrf
+        @method('DELETE')
+    </form>
 @endsection
 
 @section('scripts')
     <script>
+        document.getElementById('btnProduct').addEventListener('click', function() {
+            // Reset the form for new entries
+            document.getElementById('formProduct').reset();
+            document.getElementById('ProductId').value = ''; // Reset hidden field for ID
+            document.getElementById('formMethod').value = 'POST'; // Set method for creating
+
+            // Set the action to the store route
+            document.getElementById('formProduct').action =
+                "{{ route('product-list.store', ['id' => $tagProduct->id]) }}";
+            document.getElementById('modalProductLabel').textContent = 'Tambah Cerita';
+        });
         document.querySelectorAll('.edit-btn-product').forEach(function(button) {
             button.addEventListener('click', function() {
                 var id = this.getAttribute('data-id');
@@ -181,6 +201,35 @@
                 // Show the modal
                 var modal = new bootstrap.Modal(document.getElementById('modalProduct'));
                 modal.show();
+            });
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.delete-btn-product').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                var itemId = this.getAttribute('data-id');
+                var type = "product"; // Set the type based on your context or logic
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Set the form action to the delete URL
+                        var deleteForm = document.getElementById('deleteForm');
+                        deleteForm.action = `/product/${itemId}/${type}/delete`;
+
+                        // Submit the form
+                        deleteForm.submit();
+                    }
+                });
             });
         });
     </script>

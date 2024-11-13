@@ -55,16 +55,19 @@ class ProductController extends Controller
     public function edit(string $id, $tagProductId)
     {
         $tagProduct = TagProduct::findOrFail($tagProductId);
+        $dataProduct = Product::where('tag_product_id', $tagProductId)
+            ->latest()
+            ->paginate(10);
 
-        $data = Product::findOrFail($id);
+        $data = Kategori::findOrFail($id);
 
-        return view('admin-product.edit', compact('data', 'tagProduct'));
+        return view('admin-product.edit', compact('data', 'tagProduct', 'dataProduct'));
     }
 
     public function update(KategoriFormRequest $request, string $id)
     {
 
-        $product = Product::findOrFail($id);
+        $product = Kategori::findOrFail($id);
 
         $data = $request->all();
 
@@ -76,20 +79,31 @@ class ProductController extends Controller
 
     }
 
-    public function destroy(string $id)
+    public function destroy(string $id, string $type)
     {
-        $data = Product::findOrFail($id);
+        if ($type === 'product') {
+            $data = Product::findOrFail($id);
 
-        if ($data->image) {
-            $imagePath = 'product/' . basename($data->image);
-            Storage::disk('public')->delete($imagePath);
+            if ($data->image) {
+                $imagePath = 'product/' . basename($data->image);
+                Storage::disk('public')->delete($imagePath);
+            }
+
+            $data->delete();
+
+            return redirect()->back()->with('success', 'Berhasil Menghapus Data Product');
         }
 
-        $data->delete();
+        if ($type === 'kategori') {
+            $kategori = Kategori::findOrFail($id);
+            $kategori->delete();
 
-        return redirect()->route('product.index')->with('success', 'Berhasil Menghapus Data');
+            return redirect()->route('product.index')->with('success', 'Berhasil Menghapus Data Kategori');
+        }
 
+        return redirect()->back()->with('error', 'Jenis data tidak ditemukan.');
     }
+
 
 
     // Function Product List

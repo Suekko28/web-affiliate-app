@@ -43,15 +43,15 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/product', controller: TagProductController::class);
     Route::post('/product/{id}/update', [TagProductController::class, 'update']);
 
-
     // Route Product Kategori
     Route::get('/product/{id}/create', [ProductController::class, 'create'])->name('form-product.create');
     Route::get('/product/{tagProductId}/edit/{id}', [ProductController::class, 'edit'])->name('form-product.edit');
+    Route::put('/product/{tagProductId}/edit/{id}', [ProductController::class, 'update'])->name('form-product.update');
     Route::post('/product/{id}/store', [ProductController::class, 'store'])->name('form-product.store');
 
-
-    Route::post('/product/{tagProductId}/store-product-list', [ProductController::class, 'storeProduct'])->name('product-list.store');
+    // Route Product List
+    Route::post('/product/{id}/store-product-list', [ProductController::class, 'storeProduct'])->name('product-list.store');
     Route::put('/product/{id}/update-product-list', [ProductController::class, 'updateProduct'])->name('product-list.update');
-    Route::delete('/product/{id}/delete-product-list', [ProductController::class, 'deleteProduct'])->name('product-list.delete');
+    Route::delete('product/{id}/{type}/delete', [ProductController::class, 'destroy'])->name('product.delete');
 
 });

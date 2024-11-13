@@ -13,6 +13,7 @@ class TagProductController extends Controller
     {
         $data = TagProduct::latest()
             ->with('Kategori')
+            ->with('Product')
             ->paginate(10);
         return view('admin-product.index', compact('data'));
     }
