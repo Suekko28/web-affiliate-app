@@ -27,12 +27,12 @@
                             <div class="mempelai text-center fw-bold fs-5 mb-4">News</div>
                             <div class="form-group fs-3">
                                 <div class="row">
-                                    <div class="col-sm-6 mb-3">
+                                    <div class="col-sm-4 mb-3">
                                         <label for="image">Gambar <span class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="image" name="image"
                                             placeholder="" value="{{ old('image') }}">
                                     </div>
-                                    <div class="col-sm-6 mb-3">
+                                    <div class="col-sm-4 mb-3">
                                         <label for="judul">Judul <span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul" name="judul"
                                             placeholder="Masukkan judul" value="{{ old('judul') }}">

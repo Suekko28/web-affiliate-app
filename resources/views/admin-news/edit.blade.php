@@ -24,7 +24,7 @@
                         @method('PUT')
                         @csrf
                         <div class="card-body container bg-white mt-5">
-                            <div class="mempelai text-center fw-bold fs-5 mb-4">news</div>
+                            <div class="mempelai text-center fw-bold fs-5 mb-4">News</div>
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
