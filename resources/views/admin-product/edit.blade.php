@@ -50,18 +50,35 @@
                                                         width="125" height="125" class="img-fluid">
                                                 </td>
                                                 <td>{{ $item->nama }}</td>
-                                                <td>
-                                                    <a href="{{ $item->link_shopee }}"
-                                                        target="_blank" class="text-primary">{{ Str::limit($item->link_shopee, 200) }}</a>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ $item->link_tokped }}"
-                                                        target="_blank" class="text-primary">{{ Str::limit($item->link_tokped, 200) }}</a>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ $item->link_tiktok }}"
-                                                        target="_blank" class="text-primary">{{ Str::limit($item->link_tiktok, 200) }}</a>
-                                                </td>
+                                                @if (empty($item->link_shopee))
+                                                    <td>None</td>
+                                                @else
+                                                    <td>
+                                                        <a href="{{ $item->link_shopee }}" target="_blank"
+                                                            class="text-primary">
+                                                            {{ Str::limit($item->link_shopee, 200) }}
+                                                        </a>
+                                                    </td>
+                                                @endif
+
+                                                @if (empty($item->link_tokped))
+                                                    <td>None</td>
+                                                @else
+                                                    <td>
+                                                        <a href="{{ $item->link_tokped }}" target="_blank"
+                                                            class="text-primary">{{ Str::limit($item->link_tokped, 200) }}</a>
+                                                    </td>
+                                                @endif
+
+                                                @if (empty($item->link_tiktok))
+                                                    <td>None</td>
+                                                @else
+                                                    <td>
+                                                        <a href="{{ $item->link_tiktok }}" target="_blank"
+                                                            class="text-primary">{{ Str::limit($item->link_tiktok, 200) }}</a>
+                                                    </td>
+                                                @endif
+
                                                 <td>
                                                     <a href="javascript:void(0)"
                                                         class="btn btn-warning mb-2 rounded edit-btn-product"

@@ -45,26 +45,19 @@
                                 <td scope="row">{{ $i }}</td>
                                 <td scope="row">{{ $item->tag_product }}</td>
                                 <td>
-                                    @foreach ($item->Kategori as $kategori)
-                                        @if ($kategori->kategori == 1)
-                                            Product
-                                        @else
-                                            Mix&Max
-                                        @endif
-                                    @endforeach
-                                </td> {{-- <td></td> --}}
-                                {{-- <td>
-                                    <img class="img-fluid" src="{{ asset('' . $item->image) }}" alt=""
-                                        width="120" height="120" alt="Foto product">
-                                </td> --}}
-                                {{-- <td scope="row">{{ $item->nama }}</td>
-                                <td scope="row">
-                                    @if ($item->kategori == 1)
-                                        Product
+                                    @if ($item->Kategori->isEmpty())
+                                        None
                                     @else
-                                        Mix&Max
+                                        @foreach ($item->Kategori as $kategori)
+                                            @if ($kategori->kategori == 1)
+                                                Product
+                                            @else
+                                                Mix&Max
+                                            @endif
+                                        @endforeach
                                     @endif
-                                </td> --}}
+                                </td>
+
                                 <td>
                                     @if ($item->Kategori->isEmpty())
                                         <a class="btn btn-primary"

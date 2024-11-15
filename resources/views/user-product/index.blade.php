@@ -1,6 +1,22 @@
 @extends('layouts.app-user')
 
 @section('navbar')
+    <style>
+        /* Prevent search icon from shifting when no data message is shown */
+        .search-bar .relative {
+            position: relative;
+        }
+
+        #noDataMessage {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
     <!-- Product Start !-->
     <section class="product">
         <div class="container mx-auto py-32 px-16 lg:px-32">
@@ -20,167 +36,60 @@
                                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
-                        <input type="search" id="default-search"
+                        <input type="search" id="searchInput"
                             class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white"
                             placeholder="Search Product (#Tag Product, Name Product)" required />
+                        <div id="noDataMessage" class="alert alert-warning" style="display: none;">
+                            Data tidak ditemukan.
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="product flex flex-wrap">
-                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
-                    <div class="card-body">
-                        <div class=" overflow-hidden mb-10">
-                            <a href="">
-                                <img src="{{ asset('/img/compass.png') }}" alt="Logo OGI" class="w-full object-cover">
-                            </a>
-                            <div class="py-8 px-6">
-                                <h6 class="code-product mb-2">#1</h6>
-                                <h4 class="title-product mb-2">Compass Retrograde</h4>
-                                <div class="flex flex-row space-x-2">
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/shopee.svg') }}" alt="">
+                @foreach ($data as $item)
+                    @foreach ($item->Product as $itemProduct)
+                        <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
+                            <div class="card-body">
+                                <div class=" overflow-hidden mb-10">
+                                    <a href="">
+                                        <img src="{{ asset('' . $itemProduct->image) }}" alt="Logo OGI"
+                                            class="w-full object-cover h-[395]">
                                     </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tokopedia.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tiktok.svg') }}" alt="">
-                                    </a>
-                                    {{-- <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button> --}}
+                                    <div class="py-8 px-6">
+                                        <h6 class="code-product mb-2">{{ $item->tag_product }}</h6>
+                                        <h4 class="title-product mb-2">{{ $itemProduct->nama }}</h4>
+                                        <div class="flex flex-row space-x-6 mt-2">
+                                            @if (!empty($itemProduct->link_shopee) || !empty($itemProduct->link_tokped) || !empty($itemProduct->link_tiktok))
+                                                @if (!empty($itemProduct->link_shopee))
+                                                    <a href="{{ $itemProduct->link_shopee }}" target="_blank"
+                                                        class="rounded">
+                                                        <img src="{{ asset('/img/shopee.svg') }}" alt="Shopee"
+                                                            class="transition-transform transform hover:scale-110 duration-300 ease-in-out">
+                                                    </a>
+                                                @endif
+
+                                                @if (!empty($itemProduct->link_tokped))
+                                                    <a href="{{ $itemProduct->link_tokped }}" class="rounded">
+                                                        <img src="{{ asset('/img/tokopedia.svg') }}" alt="Tokopedia"
+                                                            class="transition-transform transform hover:scale-110 duration-300 ease-in-out">
+                                                    </a>
+                                                @endif
+
+                                                @if (!empty($itemProduct->link_tiktok))
+                                                    <a href="{{ $itemProduct->link_tiktok }}" class="rounded">
+                                                        <img src="{{ asset('/img/tiktok.svg') }}" alt="Tiktok"
+                                                            class="transition-transform transform hover:scale-110 duration-300 ease-in-out">
+                                                    </a>
+                                                @endif
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
-                    <div class="card-body">
-                        <div class=" overflow-hidden mb-10">
-                            <img src="{{ asset('/img/celana.png') }}" alt="Logo OGI" class="w-full object-cover">
-                            <div class="py-8 px-6">
-                                <h6 class="code-product mb-2">#1</h6>
-                                <h4 class="title-product mb-2">Compass Retrograde</h4>
-                                <div class="flex flex-row space-x-2">
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/shopee.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tokopedia.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tiktok.svg') }}" alt="">
-                                    </a>
-                                    {{-- <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
-                    <div class="card-body">
-                        <div class=" overflow-hidden mb-10">
-                            <img src="{{ asset('/img/baju.png') }}" alt="Logo OGI" class="w-full object-cover ">
-                            <div class="py-8 px-6">
-                                <h6 class="code-product mb-2">#1</h6>
-                                <h4 class="title-product mb-2">Compass Retrograde</h4>
-                                <div class="flex flex-row space-x-2">
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/shopee.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tokopedia.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tiktok.svg') }}" alt="">
-                                    </a>
-                                    {{-- <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
-                    <div class="card-body">
-                        <div class=" overflow-hidden mb-10">
-                            <a href="">
-                                <img src="{{ asset('/img/compass.png') }}" alt="Logo OGI" class="w-full object-cover">
-                            </a>
-                            <div class="py-8 px-6">
-                                <h6 class="code-product mb-2">#1</h6>
-                                <h4 class="title-product mb-2">Compass Retrograde</h4>
-                                <div class="flex flex-row space-x-2">
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/shopee.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tokopedia.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tiktok.svg') }}" alt="">
-                                    </a>
-                                    {{-- <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
-                    <div class="card-body">
-                        <div class=" overflow-hidden mb-10">
-                            <img src="{{ asset('/img/celana.png') }}" alt="Logo OGI" class="w-full object-cover">
-                            <div class="py-8 px-6">
-                                <h6 class="code-product mb-2">#1</h6>
-                                <h4 class="title-product mb-2">Compass Retrograde</h4>
-                                <div class="flex flex-row space-x-2">
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/shopee.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tokopedia.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tiktok.svg') }}" alt="">
-                                    </a>
-                                    {{-- <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
-                    <div class="card-body">
-                        <div class=" overflow-hidden mb-10">
-                            <img src="{{ asset('/img/baju.png') }}" alt="Logo OGI" class="w-full object-cover ">
-                            <div class="py-8 px-6">
-                                <h6 class="code-product mb-2">#1</h6>
-                                <h4 class="title-product mb-2">Compass Retrograde</h4>
-                                <div class="flex flex-row space-x-2">
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/shopee.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tokopedia.svg') }}" alt="">
-                                    </a>
-                                    <a href="" class="p-2 rounded-xl hover:bg-slate-200">
-                                        <img src="{{ asset('/img/tiktok.svg') }}" alt="">
-                                    </a>
-                                    {{-- <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button>
-                                    <button class="bg-primary rounded text-white px-6">Shopee</button> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endforeach
+
             </div>
             <div class="pagination flex justify-center w-full space-x-1 mt-6">
                 <button
@@ -196,5 +105,35 @@
             </div>
 
     </section>
-    <!-- Product Start !-->
+    <!-- Product End !-->
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const productCards = document.querySelectorAll('.card'); // Select product cards
+        const noDataMessage = document.getElementById('noDataMessage');
+
+        searchInput.addEventListener('input', function() {
+            const searchText = this.value.toLowerCase();
+            let found = false;
+
+            productCards.forEach(function(card) {
+                const productName = card.querySelector('.title-product').innerText
+                    .toLowerCase(); // Get product name
+                const productTag = card.querySelector('.code-product').innerText
+                    .toLowerCase(); // Get product tag
+
+                // Check if search text matches either the name or the tag
+                if (productName.includes(searchText) || productTag.includes(searchText)) {
+                    card.style.display = ''; // Show the product card
+                    found = true;
+                } else {
+                    card.style.display = 'none'; // Hide the product card
+                }
+            });
+
+            // Show or hide noDataMessage based on search results
+            noDataMessage.style.display = found ? 'none' : 'block';
+        });
+    </script>
 @endsection

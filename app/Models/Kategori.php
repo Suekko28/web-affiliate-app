@@ -28,4 +28,6 @@ class Kategori extends Model
         return $this->hasMany(Product::class, 'kategori_id', 'id');
     }
 
+    
+
 }

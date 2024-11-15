@@ -14,15 +14,16 @@ return new class extends Migration {
             $table->id();
             $table->string('image');
             $table->string('nama');
-            $table->string('link_shopee');
-            $table->string('link_tokped');
-            $table->string('link_tiktok');
+            $table->string('link_shopee')->nullable();
+            $table->string('link_tokped')->nullable();
+            $table->string('link_tiktok')->nullable();
             $table->unsignedBigInteger('tag_product_id');
             $table->foreign('tag_product_id')
                 ->references('id')
                 ->on('tag_product')
                 ->onDelete('cascade');
             $table->timestamps();
+            
         });
     }
 
