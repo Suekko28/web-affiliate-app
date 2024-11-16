@@ -53,9 +53,9 @@
                                 <div class=" overflow-hidden mb-10">
                                     <a href="">
                                         <img src="{{ asset('' . $itemProduct->image) }}" alt="Logo OGI"
-                                            class="w-full object-cover h-[395]">
+                                            class="w-full object-cover h-[300] lg:h-[250] md:h-[620] sm:h-[500] sm:w-3/4 mx-auto">
                                     </a>
-                                    <div class="py-8 px-6">
+                                    <div class="py-6">
                                         <h6 class="code-product mb-2">{{ $item->tag_product }}</h6>
                                         <h4 class="title-product mb-2">{{ $itemProduct->nama }}</h4>
                                         <div class="flex flex-row space-x-6 mt-2">
