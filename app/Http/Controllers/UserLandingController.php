@@ -15,7 +15,7 @@ class UserLandingController extends Controller
         $data = TagProduct::latest()
             ->with('Kategori')
             ->with('Product')
-            ->paginate(10);
+            ->paginate(1    );
 
         $dataNews = News::latest()
             ->paginate(10);

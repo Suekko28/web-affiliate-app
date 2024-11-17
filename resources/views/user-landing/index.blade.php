@@ -16,7 +16,7 @@
                 @foreach ($data as $item)
                     @foreach ($item->Product as $itemProduct)
                         <div class="card w-full lg:w-1/2 xl:w-1/3 ">
-                            <div class="card-body">
+                            <div class="card-body text-primary">
                                 <div class=" overflow-hidden mb-10">
                                     <a href="">
                                         <img src="{{ asset('' . $itemProduct->image) }}" alt="Logo OGI"
@@ -126,7 +126,7 @@
                 @endforeach
             </div>
             <div class="more-detail flex justify-center">
-                <a href=""
+                <a href="{{ route('mix&max-list.index') }}"
                     class="w-1/2 lg:w-1/3 text-center py-2 border border-black bg-white transition-all hover:shadow-lg text-primary hover:text-white hover:bg-black hover:border-slate-800 focus:text-white">More
                     Detail</a>
             </div>
@@ -157,8 +157,8 @@
                                 </a>
                                 <div class="py-8 px-6">
                                     <h4 class="title-news mb-2 font-bold">{{ $item->judul }}</h4>
-                                    <div class="text-sm mb-2">{!! Str::limit($item->deskripsi, 200) !!}</div>
-                                    <a class="text-xs hover:text-hover text-secondary" href="#">Continue Read <i
+                                    <div class="text-sm mb-2">{!! Str::limit($item->deskripsi, 100) !!}</div>
+                                    <a class="text-xs hover:text-hover text-secondary" href="{{route('news-show.show', $item->slug)}}">Continue Read <i
                                             class="fa-solid fa-arrow-right"></i></a>
                                 </div>
                             </div>
@@ -167,7 +167,7 @@
                 @endforeach
             </div>
             <div class="more-detail flex justify-center">
-                <a href=""
+                <a href="{{route('news-list.index')}}"
                     class="w-1/2 lg:w-1/3 text-center py-2 border border-black bg-white transition-all hover:shadow-lg text-primary hover:text-white hover:bg-black hover:border-slate-800 focus:text-white">More
                     Detail</a>
             </div>

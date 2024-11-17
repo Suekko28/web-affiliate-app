@@ -14,6 +14,22 @@
 </head>
 
 <body>
+    <style>
+        /* Prevent search icon from shifting when no data message is shown */
+        .search-bar .relative {
+            position: relative;
+        }
+
+        #noDataMessage {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
 
     <!-- Navbar Start !-->
     <header class="bg-transparent absolute top-0 left-0 w-full flex items-center z-10">
@@ -42,15 +58,15 @@
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Home</a>
                             </li>
                             <li class="group">
-                                <a href="{{ url('/product-list') }}"
+                                <a href="{{ route('product-list.index') }}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Product</a>
                             </li>
                             <li class="group">
-                                <a href="{{ url('/mix&max-list') }}"
+                                <a href="{{ route('mix&max-list.index') }}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">Mix&Max</a>
                             </li>
                             <li class="group">
-                                <a href="{{ url('/news-list') }}"
+                                <a href="{{ route('news-list.index') }}"
                                     class="text-base text-primary py-2 mx-8 block sm:flex group-hover:text-hover">News</a>
                             </li>
                         </ul>
@@ -93,6 +109,34 @@
             });
         });
     </script>
+
+<script>
+    // Search functionality for both Mix & Max and Product sections
+    const searchInput = document.getElementById('searchInput');
+    const productCards = document.querySelectorAll('.card');
+    const noDataMessage = document.getElementById('noDataMessage');
+
+    searchInput.addEventListener('input', function () {
+        const searchText = this.value.toLowerCase();
+        let found = false;
+
+        productCards.forEach(card => {
+            const productName = card.querySelector('.title-product').innerText.toLowerCase();
+            const productTag = card.querySelector('.code-product').innerText.toLowerCase();
+
+            // Check if search text matches product name or tag
+            if (productName.includes(searchText) || productTag.includes(searchText)) {
+                card.style.display = ''; // Show card
+                found = true;
+            } else {
+                card.style.display = 'none'; // Hide card
+            }
+        });
+
+        // Display "Data tidak ditemukan" if no cards are visible
+        noDataMessage.style.display = found ? 'none' : 'block';
+    });
+</script>
 
 
 

@@ -6,12 +6,19 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagProductController;
 use App\Http\Controllers\UserLandingController;
+use App\Http\Controllers\UserMixMaxContorller;
+use App\Http\Controllers\UserNewsController;
 use App\Http\Controllers\UserProductController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::resource('/', UserLandingController::class);
 Route::resource('/product-list', UserProductController::class);
+Route::resource('/mix&max-list', UserMixMaxContorller::class);
+Route::resource('/news-list', UserNewsController::class);
+Route::get('/news-show/{slug}', [UserNewsController::class, 'show'])->name('news-show.show');
+
+
 
 Auth::routes();
 
@@ -41,3 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('product/{id}/{type}/delete', [ProductController::class, 'destroy'])->name('product.delete');
 
 });
+
+// Route::get('/news-show', function(){
+//     return view ('user-news.show');
+// });

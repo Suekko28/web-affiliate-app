@@ -1,22 +1,7 @@
 @extends('layouts.app-user')
 
 @section('navbar')
-    <style>
-        /* Prevent search icon from shifting when no data message is shown */
-        .search-bar .relative {
-            position: relative;
-        }
-
-        #noDataMessage {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            margin-top: 10px;
-            display: none;
-        }
-    </style>
+   
     <!-- Product Start !-->
     <section class="product">
         <div class="container mx-auto py-32 px-16 lg:px-32">
@@ -106,34 +91,5 @@
 
     </section>
     <!-- Product End !-->
-
-    <script>
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const productCards = document.querySelectorAll('.card'); // Select product cards
-        const noDataMessage = document.getElementById('noDataMessage');
-
-        searchInput.addEventListener('input', function() {
-            const searchText = this.value.toLowerCase();
-            let found = false;
-
-            productCards.forEach(function(card) {
-                const productName = card.querySelector('.title-product').innerText
-                    .toLowerCase(); // Get product name
-                const productTag = card.querySelector('.code-product').innerText
-                    .toLowerCase(); // Get product tag
-
-                // Check if search text matches either the name or the tag
-                if (productName.includes(searchText) || productTag.includes(searchText)) {
-                    card.style.display = ''; // Show the product card
-                    found = true;
-                } else {
-                    card.style.display = 'none'; // Hide the product card
-                }
-            });
-
-            // Show or hide noDataMessage based on search results
-            noDataMessage.style.display = found ? 'none' : 'block';
-        });
-    </script>
+   
 @endsection
