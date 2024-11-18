@@ -12,7 +12,7 @@ class UserProductController extends Controller
         $data = TagProduct::latest()
         ->with('Product')
         ->with('Kategori')
-        ->paginate(1);
+        ->paginate(2);
 
         return view('user-product.index', compact('data'));
     }
