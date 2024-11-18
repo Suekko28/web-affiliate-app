@@ -22,9 +22,10 @@
                                         class="w-full object-cover h-[250] block">
                                 </a>
                                 <div class="py-8 px-6">
-                                    <h4 class="title-news mb-2 font-bold">{{ $item->judul }}</h4>
-                                    <div class="text-sm mb-2">{!! Str::limit($item->deskripsi, 100) !!}</div>
-                                    <a class="text-xs hover:text-hover text-secondary" href="#">Continue Read <i
+                                    <h4 class="title-news font-bold">{{ $item->judul }}</h4>
+                                    <div class="date-news text-xs mb-2">{{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y')}}</div>
+                                    <div class="text-sm text-gray-700 mb-2">{!! Str::limit($item->deskripsi, 100) !!}</div>
+                                    <a class="text-sm hover:text-hover text-secondary" href="{{route('news-show.show', $item->slug)}}">Continue Read <i
                                             class="fa-solid fa-arrow-right"></i></a>
                                 </div>
                             </div>

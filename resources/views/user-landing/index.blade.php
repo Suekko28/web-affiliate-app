@@ -1,6 +1,12 @@
 @extends('layouts.app-user')
 
 @section('navbar')
+<style>
+        .card-blog-paragraph img {
+            display: none;
+            /* Menyembunyikan semua gambar di dalam elemen card-blog-paragraph */
+        }
+    </style>
     <!-- Product Start !-->
     <section class="product" id="product">
         <div class="container mx-auto py-32 px-16 lg:px-32">
@@ -147,8 +153,8 @@
                 </div>
             </div>
             <div class="news flex flex-wrap">
-                @foreach ($dataNews as $item)
-                    <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
+                <div class="card w-full px-4 lg:w-1/2 xl:w-1/3">
+                    @foreach ($dataNews as $item)
                         <div class="card-body">
                             <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-10">
                                 <a href="#">
@@ -156,22 +162,22 @@
                                         class="w-full object-cover h-[250] block">
                                 </a>
                                 <div class="py-8 px-6">
-                                    <h4 class="title-news mb-2 font-bold">{{ $item->judul }}</h4>
-                                    <div class="text-sm mb-2">{!! Str::limit($item->deskripsi, 100) !!}</div>
-                                    <a class="text-xs hover:text-hover text-secondary" href="{{route('news-show.show', $item->slug)}}">Continue Read <i
+                                    <h4 class="title-news font-bold">{{ $item->judul }}</h4>
+                                    <div class="date-news text-xs mb-2">{{ \Carbon\Carbon::parse($item->created_at)->format('d-m-Y')}}</div>
+                                    <div class="text-sm text-gray-700 mb-2">{!! Str::limit($item->deskripsi, 100) !!}</div>
+                                    <a class="text-sm hover:text-hover text-secondary" href="{{route('news-show.show', $item->slug)}}">Continue Read <i
                                             class="fa-solid fa-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
-                @endforeach
             </div>
             <div class="more-detail flex justify-center">
                 <a href="{{route('news-list.index')}}"
                     class="w-1/2 lg:w-1/3 text-center py-2 border border-black bg-white transition-all hover:shadow-lg text-primary hover:text-white hover:bg-black hover:border-slate-800 focus:text-white">More
                     Detail</a>
             </div>
-
         </div>
     </section>
     <!-- News End !-->

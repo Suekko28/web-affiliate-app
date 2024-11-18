@@ -13,7 +13,7 @@
                 </div>
                 <div class="news">
                     <div class="py-8 px-6">
-                        <div class="text-sm mb-2">{!! ($data->deskripsi) !!}</div>
+                        <div class="text-sm text-gray-700 mb-2">{!! ($data->deskripsi) !!}</div>
                     </div>
                 </div>
 
