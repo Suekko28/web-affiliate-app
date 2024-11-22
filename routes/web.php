@@ -22,10 +22,6 @@ Route::get('/news-show/{slug}', [UserNewsController::class, 'show'])->name('news
 
 Auth::routes();
 
-Route::get('/dashboard', action: function () {
-    return view('admin-dashboard.index');
-});
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -38,8 +34,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Route Product Kategori
     Route::get('/product/{id}/create', [ProductController::class, 'create'])->name('form-product.create');
-    Route::get('/product/{tagProductId}/edit/{id}', [ProductController::class, 'edit'])->name('form-product.edit');
-    Route::put('/product/{tagProductId}/edit/{id}', [ProductController::class, 'update'])->name('form-product.update');
+    Route::get('/product/{id}/edit/{tagProductId}', [ProductController::class, 'edit'])->name('form-product.edit');
+    Route::put('/product/{id}/edit/{tagProductId}', [ProductController::class, 'update'])->name('form-product.update');
     Route::post('/product/{id}/store', [ProductController::class, 'store'])->name('form-product.store');
 
     // Route Product List
@@ -48,7 +44,3 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('product/{id}/{type}/delete', [ProductController::class, 'destroy'])->name('product.delete');
 
 });
-
-// Route::get('/news-show', function(){
-//     return view ('user-news.show');
-// });

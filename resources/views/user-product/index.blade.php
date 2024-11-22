@@ -1,7 +1,6 @@
 @extends('layouts.app-user')
 
 @section('navbar')
-   
     <!-- Product Start !-->
     <section class="product">
         <div class="container mx-auto pt-32 px-16 lg:px-32">
@@ -36,10 +35,8 @@
                         <div class="card w-full px-4 py-4 lg:w-1/2 xl:w-1/3">
                             <div class="card-body">
                                 <div class=" overflow-hidden mb-10">
-                                    <a href="">
-                                        <img src="{{ asset('' . $itemProduct->image) }}" alt="Logo OGI"
-                                            class="w-full object-cover h-[300] lg:h-[250] md:h-[620] sm:h-[500] sm:w-3/4 mx-auto">
-                                    </a>
+                                    <img src="{{ asset('' . $itemProduct->image) }}" alt="Logo OGI"
+                                        class="w-full object-cover h-[300] lg:h-[290] md:h-[620] sm:h-[500] sm:w-3/4 mx-auto transition-transform transform hover:scale-110 duration-300 ease-in-out">
                                     <div class="py-6">
                                         <h6 class="code-product mb-2">{{ $item->tag_product }}</h6>
                                         <h4 class="title-product mb-2">{{ $itemProduct->nama }}</h4>
@@ -75,9 +72,8 @@
                     @endforeach
                 @endforeach
             </div>
-            <div class="pagination mb-6">{{$data->links()}}</div>
+            <div class="pagination mb-6">{{ $data->links() }}</div>
         </div>
     </section>
     <!-- Product End !-->
-   
 @endsection

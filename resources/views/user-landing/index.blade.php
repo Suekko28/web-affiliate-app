@@ -8,7 +8,7 @@
     </style>
     <!-- Product Start !-->
     <section class="product" id="product">
-        <div class="container mx-auto py-32 px-16 lg:px-32">
+        <div class="container mx-auto py-32 lg:px-32">
             <div class="title-product w-full px-4">
                 <div class="max-w-xl mx-auto text-center mb-12">
                     <h4 class="text-lg sm:text-xl lg:text-2xl text-primary">
@@ -25,7 +25,7 @@
                                 <div class=" overflow-hidden mb-10">
                                     <a href="">
                                         <img src="{{ asset('' . $itemProduct->image) }}" alt="Logo OGI"
-                                            class="w-full object-cover h-[300] lg:h-[250] md:h-[620] sm:h-[500] sm:w-3/4 mx-auto">
+                                            class="w-full object-cover h-[300] lg:h-[290] md:h-[620] sm:h-[500] sm:w-3/4 mx-auto transition-transform transform hover:scale-110 duration-300 ease-in-out">
                                     </a>
                                     <div class="py-8">
                                         <h6 class="code-product mb-2">{{ $item->tag_product }}</h6>
@@ -92,7 +92,7 @@
                                 <div class="card-body">
                                     <div class="overflow-hidden mb-10">
                                         <img src="{{ asset('' . $itemProduct->image) }}" alt="Logo OGI"
-                                            class="w-full object-cover h-[300] lg:h-[250] md:h-[620] sm:h-[500] sm:w-3/4 mx-auto">
+                                            class="w-full object-cover h-[300] lg:h-[250] md:h-[620] sm:h-[500] sm:w-3/4 mx-auto transition-transform transform hover:scale-110 duration-300 ease-in-out">
                                         <div class="py-8">
                                             <h6 class="code-mixmax mb-2">{{ $item->tag_product }}</h6>
                                             <h4 class="title-mixmax mb-2">{{ $itemProduct->nama }}</h4>

@@ -22,14 +22,15 @@ class KategoriFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'kategori' => ['required'],
+            'kategori' => ['required', 'in:1,2'], 
         ];
     }
 
     public function messages()
     {
         return [
-            'kategori.required' => 'Kategori wajib dipilih'
+            'kategori.required' => 'Kategori wajib dipilih',
+            'kategori.in' => 'Kategori wajib dipilih'
         ];
     }
 }

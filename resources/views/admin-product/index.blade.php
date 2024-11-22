@@ -66,7 +66,7 @@
                                     @else
                                         <a class="btn btn-secondary"
                                             href="{{ route('form-product.edit', ['tagProductId' => $item->Kategori->first()->tag_product_id, 'id' => $item->Kategori->first()->id]) }}">
-                                            Edit Konten
+                                            Edit Content
                                         </a>
                                     @endif
                                 </td>

@@ -28,7 +28,7 @@
                             <div class="form-group fs-3">
                                 <div class="row">
                                     <div class="col-sm-4 mb-3">
-                                        <label for="image">Gambar <span class="mandatory">*</span></label>
+                                        <label for="image">Image <span class="mandatory">*</span></label>
                                         <input type="file" class="form-control" id="image" name="image">
 
                                         <!-- Tampilkan gambar lama jika ada -->
@@ -41,20 +41,20 @@
                                         @endif
                                     </div>
                                     <div class="col-sm-4 mb-3">
-                                        <label for="judul">Judul <span class="mandatory">*</span></label>
+                                        <label for="judul">Title <span class="mandatory">*</span></label>
                                         <input type="text" class="form-control" id="judul" name="judul"
                                             placeholder="Masukkan judul" value="{{ $data->judul }}">
                                     </div>
                                     <div class="col-sm-12 mb-3">
-                                        <label for="deskripsi">Deskripsi <span class="mandatory">*</span></label>
+                                        <label for="deskripsi">Description <span class="mandatory">*</span></label>
                                         <textarea class="form-control" rows="10" id="deskripsi" name="deskripsi" placeholder="Masukkan isi deskripsi">{{ $data->deskripsi }}</textarea>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="d-flex flex-row-reverse mt-5">
-                                <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
-                                <a href="{{ route('news.index') }}" class="btn btn-secondary">Batal</a>
+                                <button type="submit" class="btn btn-primary ml-3 ms-3">Save</button>
+                                <a href="{{ route('news.index') }}" class="btn btn-secondary">Cancel</a>
                             </div>
 
                         </div>

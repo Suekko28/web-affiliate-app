@@ -22,14 +22,15 @@ class TagProductFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tag_product' => ['required'],
+            'tag_product' => ['required', 'unique:tag_product,tag_product'],
         ];
     }
 
     public function messages()
     {
         return [
-            'tag_product.required' => 'Tag product wajib diisi'
+            'tag_product.required' => 'Tag product wajib diisi',
+            'tag_product.unique' => 'Tag product sudah tedaftar'
         ];
     }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tag_product', function (Blueprint $table) {
             $table->id();
-            $table->string('tag_product');
+            $table->string('tag_product')->unique();
             $table->timestamps();
         });
     }

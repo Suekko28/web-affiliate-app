@@ -2,15 +2,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Inspired Outfit menyediakan panduan mix & match fashion terbaik untuk semua gaya. Temukan produk, tips, dan berita fashion terkini di sini!">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="Inspired Outfit - Panduan Mix & Match Fashion di Indonesia">
+    <meta property="og:description"
+        content="Jelajahi panduan terbaik mix & match fashion untuk semua gaya di Inspired Outfit.">
+    <meta property="og:image" content="{{ asset('/img/logo.png') }}">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="website icon" type="png" href="{{ 'img/logo.png' }}">
 </head>
 @vite('resources/css/app.css')
-<title>Inspired Outfit</title>
+<title>Inspired Outfit - Panduan Mix & Match Fashion di Indonesia</title>
 </head>
 
 <body>
@@ -33,7 +41,7 @@
 
     <!-- Navbar Start !-->
     <header class="bg-transparent absolute top-0 left-0 w-full flex items-center z-10">
-        <div class="container mx-auto px-16">
+        <div class="container mx-auto lg:px-16">
             <div class="flex items-center justify-between relative">
                 <div class="">
                     <img src="{{ asset('/img/logo.png') }}" alt="Logo OGI" class="py-6 block" width="50"
@@ -41,7 +49,8 @@
                     {{-- <a href="#" class="font-bold text-lg text-primary block py-6">Outfit Guide Indonesia</a> --}}
                 </div>
                 <div class="flex items-center">
-                    <button id="hamburger" type="button" class="block absolute right-4 lg:hidden">
+                    <button id="hamburger" type="button"
+                        class="p-1 rounded block absolute right-4 lg:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                         <span class="sr-only">Open main menu</span>
                         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 17 14">
@@ -110,33 +119,39 @@
         });
     </script>
 
-<script>
-    // Search functionality for both Mix & Max and Product sections
-    const searchInput = document.getElementById('searchInput');
-    const productCards = document.querySelectorAll('.card');
-    const noDataMessage = document.getElementById('noDataMessage');
+    <script>
+        // Search functionality for News section
+        const searchInput = document.getElementById('searchInput');
+        const newsCards = document.querySelectorAll('.card');
+        const noDataMessage = document.getElementById('noDataMessage');
 
-    searchInput.addEventListener('input', function () {
-        const searchText = this.value.toLowerCase();
-        let found = false;
+        searchInput.addEventListener('input', function() {
+            const searchText = this.value.toLowerCase();
+            let found = false;
 
-        productCards.forEach(card => {
-            const productName = card.querySelector('.title-product').innerText.toLowerCase();
-            const productTag = card.querySelector('.code-product').innerText.toLowerCase();
+            newsCards.forEach(card => {
+                const newsTitle = card.querySelector('.title-news')?.innerText.toLowerCase() || '';
+                const productTag = card.querySelector('.code-product')?.innerText.toLowerCase() || '';
+                const productName = card.querySelector('.title-product')?.innerText.toLowerCase() || '';
 
-            // Check if search text matches product name or tag
-            if (productName.includes(searchText) || productTag.includes(searchText)) {
-                card.style.display = ''; // Show card
-                found = true;
-            } else {
-                card.style.display = 'none'; // Hide card
-            }
+                // Check if search text matches any of the criteria
+                if (
+                    newsTitle.includes(searchText) ||
+                    productTag.includes(searchText) ||
+                    productName.includes(searchText)
+                ) {
+                    card.style.display = ''; // Show card
+                    found = true;
+                } else {
+                    card.style.display = 'none'; // Hide card
+                }
+            });
+
+            // Display "Data tidak ditemukan" if no cards are visible
+            noDataMessage.style.display = found ? 'none' : 'block';
         });
+    </script>
 
-        // Display "Data tidak ditemukan" if no cards are visible
-        noDataMessage.style.display = found ? 'none' : 'block';
-    });
-</script>
 
 
 

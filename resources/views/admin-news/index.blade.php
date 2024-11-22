@@ -10,7 +10,7 @@
             <h4 class="card-title mb-0">Basic Table</h4>
         </div> --}}
         <div class="card-body">
-            <a class="btn btn-primary mb-3" href="{{ url('news/create') }}">+ Buat News</a>
+            <a class="btn btn-primary mb-3" href="{{ url('news/create') }}">+ Create News</a>
             @include('layouts.message')
             <div class="search">
                 <div class="mb-3">
@@ -27,8 +27,8 @@
                             {{-- <th><input type="checkbox" id="selectAll"></th> --}}
                             <th>No</th>
                             {{-- <th>Nama Undangan</th> --}}
-                            <th>Foto</th>
-                            <th>Judul</th>
+                            <th>Image</th>
+                            <th>Title</th>
                             <th>Created Date</th>
                             <th>Aksi</th>
                         </tr>
