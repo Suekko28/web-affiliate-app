@@ -1,10 +1,10 @@
 🚀✨ Introducing Web Affiliate App v2!
 
 Take your affiliate business to the next level with Web Affiliate App v2, a significant upgrade from v1. Beyond basic product management, v2 includes:
-✅ Add products effortlessly
-✅ Publish and manage news
-✅ Filter products by category
-✅ All managed through a custom-built CMS with a sleek premium template
+- ✅ Add products effortlessly
+- ✅ Publish and manage news
+- ✅ Filter products by category
+- ✅ All managed through a custom-built CMS with a sleek premium template
 
 Streamline your operations with style, functionality, and efficiency! 💼🛒📢
 
