@@ -7,7 +7,7 @@
                     <img src="{{asset('img/whatsapp.svg')}}" alt="Logo Whatsapp" class="w-full h-[20px]">
                     <img src="{{asset('img/email.svg')}}" alt="Logo Email" class="w-full h-[20px]">
                 </div>
-                <div class="text-xs">&copy; Outfit Guide Indonesia</div>
+                <div class="text-s">&copy; Outfit Guide Indonesia</div>
             </div>
         </div>
     </section>

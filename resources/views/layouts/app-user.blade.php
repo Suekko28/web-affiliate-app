@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Inspired Outfit menyediakan panduan mix & match fashion terbaik untuk semua gaya. Temukan produk, tips, dan berita fashion terkini di sini!">
     <meta property="og:title" content="Inspired Outfit - Panduan Mix & Match Fashion di Indonesia">
@@ -18,12 +19,9 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="website icon" type="png" href="{{ 'img/logo.png' }}">
-    <link rel="stylesheet" href="css/style.css">
+    @vite('resources/css/style.css')
+    <title>Inspired Outfit - Panduan Mix & Match Fashion di Indonesia</title>
 </head>
-@vite('resources/css/style.css')
-<title>Inspired Outfit - Panduan Mix & Match Fashion di Indonesia</title>
-</head>
-
 <body>
     <style>
         /* Prevent search icon from shifting when no data message is shown */
