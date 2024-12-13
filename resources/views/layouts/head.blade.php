@@ -28,6 +28,7 @@
 
 <!-- Core CSS (fixed to link, not script) -->
 <link rel="stylesheet" href="{{ URL::asset('build/css/styles.css') }}">
+<link rel="stylesheet" href="{{ asset('build/css/styles.css') }}">
 
 <!-- Laravel Vite SCSS -->
 @vite(['resources/scss/styles.scss'])

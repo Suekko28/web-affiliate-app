@@ -18,6 +18,7 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="website icon" type="png" href="{{ 'img/logo.png' }}">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 @vite('resources/css/style.css')
 <title>Inspired Outfit - Panduan Mix & Match Fashion di Indonesia</title>
