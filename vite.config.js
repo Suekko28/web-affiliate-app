@@ -38,6 +38,7 @@ plugins: [
             'resources/scss/styles.scss',
             'resources/js/app.js',
             'resources/css/styles-rtl.css',
+            'resources/css/style.css',
             'resources/scss/styles.scss',
         ],
         refresh: true,
