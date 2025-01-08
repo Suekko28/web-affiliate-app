@@ -1,0 +1,36 @@
+.mandatory {
+    color: red; /* Atau warna lain yang sesuai */
+}
+
+.sidebar-link i {
+    color: #1a1a1a; /* Warna awal ikon */
+    transition: color 0.3s ease; /* Animasi transisi */
+}
+
+.sidebar-link:hover i {
+    color: white !important; /* Warna ikon saat hover */
+}
+
+.sidebar-link.active i {
+    color: white !important; /* Warna ikon saat aktif */
+}
+
+.btn-primary {
+    background-color: #1a1a1a !important;
+    --bs-btn-active-bg: #000 !important; /* Warna background hitam saat tombol diklik */
+    --bs-btn-active-border-color: #000 !important; /* Warna border hitam saat tombol diklik */
+}
+
+.btn-secondary {
+    background-color: transparent !important;
+    border-color: #1a1a1a !important;
+    color: #2d2d2d !important;
+    --bs-btn-active-bg: #000 !important; /* Warna background hitam saat tombol diklik */
+    --bs-btn-active-border-color: #000 !important; /* Warna border hitam saat tombol diklik */
+}
+
+
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: white !important;
+}
